@@ -1,0 +1,21 @@
+import {it, describe, expect } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import LoginPage from './login';
+
+describe('Login page', () => {
+    it("should render with required field", () => {
+        render(<LoginPage />);
+        // getBy -> throws error
+        // queryBy -> null
+        // findBy -> async
+        // Heading
+    expect(screen.getByRole("heading", { name: /Sign in/i })).toBeInTheDocument();
+
+
+        expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
+        expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
+        expect(screen.getByRole("button", {name: "Log in"})).toBeInTheDocument();
+        expect(screen.getByRole("checkbox", {name: "Remember me"})).toBeInTheDocument();
+        expect(screen.getByText("Forgot password")).toBeInTheDocument();
+    });
+});
